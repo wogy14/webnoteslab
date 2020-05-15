@@ -56,8 +56,18 @@ class AuthorController extends BaseController {
         $author->user_id = $user->id;
         $author->is_creator = false;
         $author->save();
+        $user = $author->user();
 
-        return $this->sendResponse($author);
+        $preparedAuthor = [
+            'id' => $author->id,
+            'user_id' => $author->user_id,
+            'note_id' => $author->note_id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'is_creator' => $author->is_creator
+        ];
+
+        return $this->sendResponse($preparedAuthor);
     }
 
     public function destroy(Request $request, Author $author) {
