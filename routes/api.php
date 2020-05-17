@@ -21,5 +21,7 @@ Route::middleware(['auth:api','cors'])->group(function () {
     Route::get('authors/note/{note}', 'API\AuthorController@getNoteAuthors');
     Route::post('authors/note/{note}', 'API\AuthorController@setAuthorByEmail');
     Route::delete('authors/{author}', 'API\AuthorController@destroy');
+    Route::get('user', 'API\UserController@show');
+    Route::put('user', 'API\UserController@update');
 });
 
